@@ -16,7 +16,7 @@ namespace Asteroids.SharedSimple
         [SerializeField] private TextMeshProUGUI _nickNamePlaceholder = null;
 
         [SerializeField] private TMP_InputField _roomName = null;
-        [SerializeField] private string _gameScenePath = null;
+        [SerializeField] private string _lobbySceneName = null;
 
         private NetworkRunner _runnerInstance = null;
 
@@ -24,7 +24,7 @@ namespace Asteroids.SharedSimple
         public void StartShared()
         {
             SetPlayerData();
-            StartGame(GameMode.Shared, _roomName.text, _gameScenePath);
+            StartGame(GameMode.Shared, _roomName.text, _lobbySceneName);
         }
         
 
@@ -51,11 +51,15 @@ namespace Asteroids.SharedSimple
             // Let the Fusion Runner know that we will be providing user input
             _runnerInstance.ProvideInput = true;
 
+            NetworkSceneInfo sceneInfo = new NetworkSceneInfo();
+            var sceneRef = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath(_lobbySceneName));
+            sceneInfo.AddSceneRef(sceneRef);
+
             var startGameArgs = new StartGameArgs()
             {
                 GameMode = mode,
                 SessionName = roomName,
-                Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath(_gameScenePath)),
+                Scene = sceneInfo,
                 ObjectProvider = _runnerInstance.GetComponent<NetworkObjectPoolDefault>(),
             };
 

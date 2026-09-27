@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Asteroids-Shared-Simple/Scenes/AsteroidsSimple-Menu.unity
     guid: 8dc9863d69bdf2846b0c9c3e35d3dbee
   - enabled: 1
+    path: Assets/Asteroids-Shared-Simple/Scenes/AsteroidsSimple-Lobby.unity
+    guid: 45d733320000e5844ad35303de2af570
+  - enabled: 1
     path: Assets/Asteroids-Shared-Simple/Scenes/AsteroidsSimple-Game.unity
     guid: ba2d6bee897e95247b9dfc3a5b8680a6
   m_configObjects: {}
